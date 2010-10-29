@@ -65,7 +65,9 @@ function Racket(initPos) {
 }
 
 window.onload = function(){
+    //FIXME: load modules for drawing/etc.
+    //FIXME: add something to handle key strokes into objects
     var world = new World();
     var ball = new Ball( world );
-    var map = new Map( world, "map", 300, 300);
+    var map = new Map( world, "map");
 }
