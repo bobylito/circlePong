@@ -1,28 +1,25 @@
+var CONSTANT={};
 
+//Constants keys
+var SIZE="SIZE";
+
+CONSTANT[SIZE]=20;
 
 function Map() {
-	function initialize() {
-	}
 }
 
-function Hole() {
-	var x,y;
-	var size;
-
-	function initialize() {
-	}
+function Hole(x,y) {
+	this.x;
+	this.y;
+	this.size=CONSTANT[SIZE]+1;
 }
 
-function Ball() {
-	var x,y;
-	var size;
-
-	function initialize() {
-	}
+function Ball(x,y) {
+	this.x;
+	this.y;
+	this.size=CONSTANT[SIZE];
 }
 
 function Racket() {
-	function initialize() {
-	}
 }
 
