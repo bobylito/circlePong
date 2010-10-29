@@ -2,6 +2,7 @@ var CONSTANT={};
 
 //Constants keys
 var SIZE="SIZE";
+var WORLD_DIAM="WORLD_DIAM";
 
 CONSTANT[SIZE]=20;
 
@@ -20,6 +21,7 @@ function Ball(x,y) {
 	this.size=CONSTANT[SIZE];
 }
 
-function Racket() {
+function Racket(initPos) {
+	this.pos=initPos;
 }
 
