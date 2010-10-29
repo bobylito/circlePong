@@ -1,27 +1,71 @@
-var CONSTANT={};
 
-//Constants keys
-var SIZE="SIZE";
-var WORLD_DIAM="WORLD_DIAM";
+const MAP_WIDTH = 300;
+const MAP_HEIGHT = 300;
+const BALL_SIZE = 20;
+const HOLE_SIZE = 21;
 
-CONSTANT[SIZE]=20;
+function World() {
+    this.balls = [];
+    this.holes = [];
+    this.rackets = [];
+    this.map = null;
+    this.context = 
 
-function Map() {
+    this.addCollider = function( elem ) {
+	this.colliders[ this.colliders.length ] = elem;
+    }
+    this.addBall = function( elem ){
+	this.balls[ this.balls.length ] = elem;
+    }
+    this.addHole = function( elem ){
+	this.holes[ this.holes.length ] = elem;
+    }
+    this.addRacket = function( elem ){
+	this.rackets[ this.rackets.length ] = elem;
+    }
 }
 
-function Hole(x,y) {
-	this.x;
-	this.y;
-	this.size=CONSTANT[SIZE]+1;
+function Map( world, container ) {
+    this.world = world;
+    this.width = MAP_WIDTH;
+    this.height = MAP_HEIGHT;
+    this.container = document.getElementById( container );
+    this.container.style.width = MAP_WIDTH;
+    this.container.style.height = MAP_HEIGHT;
+    this.container.width = MAP_WIDTH;
+    this.container.height = MAP_HEIGHT;
+    world.map = this;
+    world.context =this.container.getContext('2d');
 }
 
-function Ball(x,y) {
-	this.x;
-	this.y;
-	this.size=CONSTANT[SIZE];
+function Hole( world, x,y ) {
+    this.world = world;
+    this.x = x;
+    this.y = y;
+    this.size = BALL_SIZE;
+    world.addHole( this );
+}
+
+function Ball( world, x, y ) {
+    this.world = world;
+    // FIXME: initial position
+    this.x;
+    this.y;
+    // FIXME: initial vector
+    this.dx;
+    this.dy;
+    this.size = BALL_SIZE;
+    world.addBall( this );
 }
 
 function Racket(initPos) {
-	this.pos=initPos;
+    this.world = world;
+    this.pos=initPos;
+    world.addRacket( this );
 }
 
+window.onload = function(){
+    var world = new World();
+    var ball = new Ball( world );
+    var map = new Map( world, "map", 300, 300);
+}
