@@ -1,8 +1,7 @@
-
-const MAP_WIDTH = 300;
-const MAP_HEIGHT = 300;
-const BALL_SIZE = 20;
-const HOLE_SIZE = 21;
+MAP_WIDTH = 300;
+MAP_HEIGHT = 300;
+BALL_SIZE = 20;
+HOLE_SIZE = 21;
 
 function World() {
     this.balls = [];
