@@ -1,15 +1,21 @@
 MAP_WIDTH = 300;
 MAP_HEIGHT = 300;
+MAP_RAY = 140;
 BALL_SIZE = 20;
 BALL_SPEED = 20;
 HOLE_SIZE = 21;
+RACKET_SIZE = 40;
+RACKET_WIDTH = 5;
+RACKET_STEP = 7;
 
 function World() {
     this.balls = [];
     this.holes = [];
     this.rackets = [];
     this.map = null;
-    this.context = "";
+    this.context = null;
+	this.canvas = null;
+	this.keys = [];
 
     this.addCollider = function( elem ) {
 		this.colliders[ this.colliders.length ] = elem;
@@ -36,6 +42,7 @@ function Map( world, container ) {
     this.container.height = MAP_HEIGHT;
     world.map = this;
     world.context = this.container.getContext('2d');
+	world.canvas = this.container;
 }
 
 function Hole( world, x,y ) {
@@ -61,7 +68,7 @@ function Ball( world, x, y ) {
     world.addBall( this );
 }
 
-function Racket( initPos ) {
+function Racket( world, initPos ) {
     this.world = world;
     this.pos = initPos;
     world.addRacket( this );
@@ -76,6 +83,10 @@ window.onload = function(){
     var world = new World();
     var ball = new Ball( world );
     var map = new Map( world, "map");
-	var interval = setInterval( function() { world.update(); }, 40 );
+	var racket = new Racket( world, 0);
+	var interval = setInterval( function() { world.tick(); }, 40 );
+	//var interval = setTimeout( function() { world.tick(); }, 40 );
+	document.onkeydown = function(e){ world.keydown(e); };
+	document.onkeyup = function(e){ world.keyup(e); };
 }
 
